@@ -1,0 +1,99 @@
+<html>
+    <style>
+   #title{display: flex;justify-content: center;font-size: 50px;color:lightgray} 
+   .topping{display: flex;justify-content: space-between;font-size: 30px}
+   .total{display: flex;justify-content: space-between;font-size: 20px}
+   .clear{display: flex;justify-content: flex-end;font-size: 20px}
+   .hide{display: flex;justify-content: flex-end;font-size: 20px;color:black}
+   .receipt{display: flex;justify-content: center;font-size: 30px;color:lightgray}
+   </style>
+   <head>
+   <script type="text/javascript">   
+    var countA = 0;
+    var countB = 0;
+	var countC = 0;
+	function TropicalFruit()
+    {
+		countA += 1.5;
+		document.getElementById('para1').innerHTML = "$"+countA;
+	}
+    function VeggiesandCheese()
+    {
+		countB += 2;
+		document.getElementById('para2').innerHTML = "$"+countB;
+	}
+    function Vegan()
+    {
+		countC += 0.5;
+		document.getElementById('para3').innerHTML = "$"+countC;
+	}
+    function total()
+    {
+		var total = 0;
+		var tax = 0;
+		var sum = 0;
+		total = countA+countB+countC;
+        tax = total*0.05
+        sum = total + tax
+		document.getElementById('total').innerHTML = "$"+total;
+		document.getElementById('tax').innerHTML = "$"+tax;
+		document.getElementById('sum').innerHTML = "$"+sum;
+	}
+    function Clear()
+	{
+		countA = 0;
+		countB = 0;
+		countC = 0;
+		total = 0;
+		tax = 0;
+		sum = 0;
+		document.getElementById('para1').innerHTML = "$"+0;
+		document.getElementById('para2').innerHTML = "$"+0;
+		document.getElementById('para3').innerHTML = "$"+0;
+		document.getElementById('total').innerHTML = "$"+0;
+		document.getElementById('tax').innerHTML = "$"+0;
+		document.getElementById('sum').innerHTML = "$"+0;
+	}
+	function Order()
+	{
+		var topping = document.getElementById("order").value;
+		var Order = topping.split(",");
+		
+		for (var i = 0; i < Order.length; i++){
+		Order[i] = Order[i].trim();
+		}
+		
+		if(Order== "TropicalFruit"){
+			TropicalFruit();
+		}
+		else if(Order == "VeggiesandCheese"){
+			VeggiesandCheese();
+		}
+		else if(Order == "Vegan"){
+			Vegan();
+		}
+	}
+	
+	
+   </script>
+   </head>
+    <body bgcolor="lightpink">
+        <title>Pizza Menu</title>
+        <p id="title">Jo's Pizza Toppings Menu</p>
+        <p class="topping"><a> TropicalFruit</a><img src="pinapple.jpg" title="source: imgur.com" /><a id="para1">$0</a> <button onclick="TropicalFruit()">Add</button> </p>
+        <p class="topping"><a> VeggiesandCheese</a><img src="veggie.jpg" title="source: imgur.com" /><a id="para2">$0</a> <button onclick="VeggiesandCheese()">Add</button> </p>
+        <p class="topping"><a> Vegan</a><img src="vegan.jpg" title="source: imgur.com" /><a id="para3">$0</a> <button onclick="Vegan()">Add</button> </p>
+		<p class="topping"><a> Type-in topping </a> 
+        <ul>
+		<li>TropicalFruit</li>
+		<li>VeggiesandCheese</li>
+		<li>Vegan</li>
+        </ul>
+        <input id="order"/><button onclick="Order()">Submit</button>
+        <p class="receipt">Receipt</p>
+        <p class="topping"><a> Subtotal</a> <a id="total">$0</a><a class="hide">_________</a>
+        <p class="topping"><a> Tax (5%)</a> <a id="tax">$0</a><a class="hide">__________</a>
+        <p class="topping"><a> Total</a> <a id="sum">$0</a><button onclick="total()">Update</button> </p>
+        <p class="clear"> <button onclick="Clear()">Clear</button></p>
+    </body>
+</html>
